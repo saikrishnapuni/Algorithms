@@ -1,3 +1,12 @@
+# Given:
+
+# $$ F(0)=0,\quad F(1)=1,\quad F(2)=2 $$
+
+# and
+
+# $$ F(n)=(2F(n-1)-3F(n-3))\bmod m $$
+
+# where \(n<10^{105}\) and \(m<10^5\).
 def mul(X,Y,m):
     Z = [
         [

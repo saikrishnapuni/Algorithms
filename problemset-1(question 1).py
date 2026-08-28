@@ -1,3 +1,14 @@
+# Given:
+
+# $$ F(0)=0,\quad F(1)=1,\quad F(2)=2 $$
+
+# and
+
+# $$ F(n)=(F(n-1)+F(n-2)+F(n-3)+1)\bmod m $$
+
+# where \(n<10^{105}\) and \(m<10^5\).
+
+# Design an efficient algorithm to compute \(F(n)\).
 def fib_linear(n,m):
     a = 0
     b = 1
