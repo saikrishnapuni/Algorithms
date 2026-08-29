@@ -361,18 +361,75 @@ Descending order:
 10, 9, 6, 5, 2, 1
 Expected Output
 5
-Summary
-#	Problem	Target Complexity
-1	Three-term recurrence	Efficient matrix/linear recurrence method
-2	Modified recurrence	Efficient matrix/linear recurrence method
-3	Count dense substrings	O(n log n)
-4	Largest dense substring	O(n)
-5	Longest equal 0/1 substring	O(n)
-6	Binary-string partition index	O(n)
-7	Count pairs with difference > X	O(n)
-8	A[i] + A[j] = A[k]	Θ(n²)
-9	Four-index equation	Efficient hashing/pair-sum approach
-10	Lattice points in circle	O(r)
-11	Rank k from stream	O(n) time, O(k) space
-12	k closest numbers to median	O(n)
-13	Rank k in two sorted arrays	O(log k)
+
+Question — Rank Queries on a Set of Integer Intervals
+
+Given n integer intervals [Lᵢ, Rᵢ], design a data structure that represents the union of all intervals and supports the following operations efficiently:
+
+Merge overlapping or adjacent intervals into disjoint intervals.
+Given an integer x, find its rank among all integers contained in the union of the intervals, where rank 1 is the largest element.
+Given an integer k, find the element having rank k (the k-th largest integer) in the union.
+Handle intervals with arbitrary ordering of endpoints (L > R should also be allowed).
+If x or k is outside the represented set, handle it appropriately.
+Example
+Input:
+Number of intervals = 4
+
+Intervals:
+[1, 5]
+[3, 8]
+[10, 12]
+[15, 17]
+
+After merging:
+
+[1, 8] [10, 12] [15, 17]
+
+The represented set is:
+
+1 2 3 4 5 6 7 8 10 11 12 15 16 17
+
+Since rank 1 is the largest:
+
+Rank 1  = 17
+Rank 2  = 16
+Rank 3  = 15
+Rank 4  = 12
+Rank 5  = 11
+...
+Sample Queries
+x = 11
+k = 5
+Expected Output
+Rank of 11 = 5
+
+Element with rank 5 = 11
+
+Rabin Karp Algorithm
+
+Given a string text and a string pattern, implement the Rabin-Karp algorithm to find the starting index of all occurrences of pattern in text. If pattern is not found, return an empty list.
+
+
+Example 1
+
+Input: text = "ababcabcababc", pattern = "abc"
+
+
+
+Output: [2, 5, 10]
+
+
+
+Expalanation : The pattern "abc" is found at indices 2, 5, and 10 in the text.
+
+Example 2
+
+Input: text = "hello", pattern = "ll"
+
+
+
+Output: [2]
+
+
+
+Explanation: The pattern "ll" is found at index 2 in the text.
