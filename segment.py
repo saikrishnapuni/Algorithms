@@ -74,14 +74,89 @@ class SegmentTree:
                 return left
             else:
                 return right
-            
-            
-arr = [5, 4, 3, 2, 1]
+    def firstsmallerelement(self,X,p,ss,se):
+        if(self.arr[self.segment[0]]>=X):
+            return self.n
+        while(ss<se):
+            mid = (ss+se)//2
+            if(self.arr[self.segment[2*p+1]]<X):
+                se = mid
+                p = 2*p+1
+            else:
+                p = 2*p+2
+                ss = mid+1
+        return self.segment[p]
+    def lastsmallerelement(self,X,p,ss,se):
+        if(self.arr[self.segment[0]]>=X):
+            return -1
+        while(ss<se):
+            mid = (ss+se)//2
+            if(self.arr[self.segment[2*p+2]]<X):
+                p = 2*p+2
+                ss = mid+1
+            else:
+                p = 2*p+1
+                se = mid
+        return self.segment[p]
+    def nextSmaller(self,p,i,ss,se):
+        ans = -1
+        l = -1
+        r = -1
+        while(ss<se):
+            mid = (ss+se)//2
+            if(i<=mid):
+                if(self.arr[self.segment[2*p+2]]<self.arr[i]):
+                    ans = 2*p+2
+                    
+                    l = mid+1
+                    r = se
+                    
+                p = 2*p+1
+                se = mid
+            else:
+                
+                p  = 2*p+2
+                
+                ss = mid+1
+        if(ans == -1):
+            return self.n
+        return self.firstsmallerelement(self.arr[i],ans,l,r)
+    def prevsmaller(self,p,i,ss,se):
+        ans = -1
+        l = -1
+        r = -1
 
+        while(ss < se):
+            mid = (ss + se) // 2
+
+            if(i <= mid):
+            
+                p = 2*p + 1
+                se = mid
+
+            else:
+                
+                if(self.arr[self.segment[2*p+1]] < self.arr[i]):
+                    ans = 2*p + 1
+                    l = ss
+                    r = mid
+
+                p = 2*p + 2
+                ss = mid + 1
+
+        if(ans == -1):
+           return -1
+
+        return self.lastsmallerelement(self.arr[i], ans, l, r)
+arr = [7,5,4,8,2]
+n = len(arr)
 s = SegmentTree(arr)
 
 idx = s.mlr(0, 2, 0, 0, s.size-1)
 
 print(idx)
 print(arr[idx])
-            
+ind = s.firstsmallerelement(1,0,0,n-1)
+print(ind)
+ind = s.firstsmallerelement(6,0,0,n-1)
+print(ind)     
